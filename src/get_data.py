@@ -1,3 +1,4 @@
+#
 # MALEK PROJECT, 2023
 # Welcome to the jungle scrapper
 # File description:
@@ -6,8 +7,7 @@
 
 from selenium.webdriver.common.by import By
 from time import sleep
-from datetime import datetime
-from datetime import timedelta
+from datetime import datetime, timedelta
 import sys
 from get_info_from_url import get_info_from_url
 from selenium.common.exceptions import NoSuchElementException as UnableToLocateElementException
@@ -15,7 +15,15 @@ from selenium.common.exceptions import ElementNotInteractableException
 
 
 def convert_str_to_delai(date):
-    """Convert a string representation of a date to a delay in days."""
+    """
+    Convert a string representation of a date to a delay in days.
+
+    Parameters:
+    - date (str): The date string to be converted.
+
+    Returns:
+    - int: The delay in days.
+    """
     date_to_delai = {
         "24h": 1,
         "1 week": 7,
@@ -27,6 +35,15 @@ def convert_str_to_delai(date):
 
 
 def get_category(driver):
+    """
+    Retrieve the job category from the webpage.
+
+    Parameters:
+    - driver: The selenium webdriver instance.
+
+    Returns:
+    - str: The job category.
+    """
     try:
         element = driver.find_element(By.XPATH,
                                       "/html/body/div[1]/div[1]/div/div/div/div/div[1]/div/div[2]/div[2]/button[2]")
@@ -60,6 +77,15 @@ def get_category(driver):
 
 
 def get_list_of_url(driver):
+    """
+    Retrieve a list of job URLs from the webpage.
+
+    Parameters:
+    - driver: The selenium webdriver instance.
+
+    Returns:
+    - list: A list of job URLs.
+    """
     class_element_of_job_box = "iiwBSR"
     class_element_of_page = "sc-cXPBUD"
     list_of_element = []
@@ -89,6 +115,16 @@ def get_list_of_url(driver):
 
 
 def loop_in_list_of_url(driver, date):
+    """
+    Loop through the list of URLs and retrieve job data.
+
+    Parameters:
+    - driver: The selenium webdriver instance.
+    - date (str): The date string.
+
+    Returns:
+    - list: A list of job data.
+    """
     count = 0
     delai = convert_str_to_delai(date)
     last_date = None

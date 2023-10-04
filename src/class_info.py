@@ -5,6 +5,7 @@
 # class_info
 #
 
+
 class JobInfo:
     """
     Class to store and manage job-related information.
